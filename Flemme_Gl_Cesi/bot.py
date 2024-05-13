@@ -25,27 +25,21 @@ try:
     button = driver.find_element(By.CLASS_NAME, 'button-solid-primary-big')
 
     username.send_keys("email")
-    password.send_keys("passsword")
+    password.send_keys("password")
     button.click()
 
     button_cesi_acc= driver.find_element(By.XPATH, '//*[@id="app"]/main/div/div/div/div/div[1]/div')
     button_cesi_acc.click()
 
-    button_continue = driver.find_element(By.XPATH, '//*[@id="app"]/div/header/div/div[3]/div/ul/li[3]/span/a')
+    button_parcours = driver.find_element(By.XPATH, '//*[@id="app"]/div/header/div/div[3]/div/ul/li[2]/span/a')
+    button_parcours.click()
+
+    button_continue =  WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="app"]/div/div/main/div[1]/div/div/div[2]/div[3]/button')))
     button_continue.click()
 
-    type_exercice = "Grammaire"
-    match(type_exercice):
-        case "Grammaire":
-            button_exercice = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div/main[2]/div/div/a[1]')))
-        case "Expression" :
-             button_exercice = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div/main[2]/div/div/a[2]')))
-        case "Vocabulaire" : 
-            button_exercice = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="app"]/div/main[2]/div/div/a[3]')))
+    activités = driver.find_elements(By.CLASS_NAME,'w-15 h-15 relative flex items-center justify-center lg:w-30 lg:h-30 rounded-full bg-listening')
 
-    button_exercice.click()
-
-    checkbox = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="app"]/div/main[2]/div/div[2]/div/div[2]/div/div[3]/label[2]/div')))
+    '''checkbox = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, '//*[@id="app"]/div/main[2]/div/div[2]/div/div[2]/div/div[3]/label[2]/div')))
     checkbox.click()
 
 
@@ -76,7 +70,7 @@ try:
         # par exemple, choisissez une réponse au hasard
         # import random
         # random_answer = random.choice(possible_answers)
-        # print("Réponse choisie:", random_answer)
+        # print("Réponse choisie:", random_answer)'''
 
 except Exception as e:
     print("Error:", e)
